@@ -16,8 +16,5 @@ class BaseTest(unittest.TestCase):
     def tearDwon(self):
         self.driver.quit()
 
-
-
-
 if  __name__ == '__main__' :
     unittest.main()

@@ -7,7 +7,7 @@ class LoginPage(BasePage):
     home_page_link_xpath        =  (By.XPATH, '//*[@title="Return to Home"]')
 
     #create accoutn box
-    register_email_xpath        = (By.XPATH, '//*[@id = "email_create]')
+    register_email_xpath        = (By.XPATH, '//*[@id = "email_create"]')
     register_button_xpath       = (By.XPATH, '//*[@id="SubmitCreate"]')
 
     #Login (already register box)
@@ -21,11 +21,11 @@ class LoginPage(BasePage):
 
 
     def fill_register_email(self, email):
-        email_registrer = self.driver.findelement(*self.email_register_input)
+        email_registrer = self.driver.find_element(*self.register_email_xpath)
         email_registrer.send_keys(email)
 
-    def register_button_click(self):
-        register_button = self.driver.findelement(*self.register_button_xpath)
+    def click_register_button(self):
+        register_button = self.driver.find_element(*self.register_button_xpath)
         register_button.click()
 
     def fill_login_email(self, email):
