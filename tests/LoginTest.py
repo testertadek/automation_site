@@ -1,30 +1,27 @@
-from BaseTest import BaseTest
 import sys
 import os
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+from automation_site.tests.BaseTest import BaseTest
+
 from automation_site.pages.HeaderPage import HeaderPage
 from automation_site.pages.LoginPage import LoginPage
 from automation_site.pages.MyAccount import MyAccount
+from automation_site.test_utils import utils
 import unittest
 from time import sleep
 import csv
 from ddt import ddt, data, unpack
+file_path = os.path.join(os.path.dirname(__file__),"..", "test_data/login.csv")
 
 # pobieranie danych z pliku
-def get_data(file_name):
-    rows = []
-    data_file = open(file_name, 'rt', )
-    reader = csv.reader(data_file)
-    # Pomijam pierwszy wiersz
-    next(reader, None)
-    for row in reader:
-        rows.append(row)
-    return rows
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 @ddt
 class LoginTest(BaseTest) :
 
-    @data(*get_data("login.csv"))
+    @data(*utils.get_data(file_path))
     @unpack
     def test_good_credentials(self, email, password):
         header = HeaderPage(self.driver)
